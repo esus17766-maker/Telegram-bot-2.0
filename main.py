@@ -1,3 +1,5 @@
+print("TOKEN QUE USA EL BOT:")
+print(TOKEN)
 import asyncio
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
