@@ -1,30 +1,24 @@
-import os
 import asyncio
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     ApplicationBuilder,
     CommandHandler,
     CallbackQueryHandler,
-    ContextTypes
+    ContextTypes,
 )
 
-# ==============================
-# CARGAR TOKEN DESDE VARIABLES
-# ==============================
+# ⚠️ TOKEN DIRECTO (NO recomendado en producción)
+TOKEN = "8730267318:AAFZSmLhCv3qTrTRFfKZThuCKs7zZWHwohE"
 
-TOKEN = os.getenv("BOT_TOKEN")
-
-if not TOKEN:
-    raise ValueError("No se encontró BOT_TOKEN en las variables de entorno")
 
 # ==============================
-# COMANDOS
+# COMANDO START
 # ==============================
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         [InlineKeyboardButton("🔥 Contenido VIP", callback_data="vip")],
-        [InlineKeyboardButton("💎 Contenido Premium", callback_data="premium")]
+        [InlineKeyboardButton("💎 Contenido Premium", callback_data="premium")],
     ]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -33,6 +27,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Bienvenido 💋\n\nSelecciona una opción:",
         reply_markup=reply_markup
     )
+
+
+# ==============================
+# BOTONES
+# ==============================
 
 async def botones(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
@@ -48,8 +47,9 @@ async def botones(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "Contenido Premium 🔥\n\nPrecio: $25\n\nEnvía comprobante al admin."
         )
 
+
 # ==============================
-# FUNCIÓN PRINCIPAL
+# MAIN
 # ==============================
 
 async def main():
@@ -61,7 +61,6 @@ async def main():
     print("Bot iniciado correctamente 🚀")
     await app.run_polling()
 
-# ==============================
 
 if __name__ == "__main__":
     asyncio.run(main())
