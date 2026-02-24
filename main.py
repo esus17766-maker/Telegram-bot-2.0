@@ -10,7 +10,9 @@ from telegram.ext import (
 )
 
 # ⚠️ TOKEN DIRECTO (NO recomendado en producción)
-TOKEN = "8730267318:AAFZSmLhCv3qTrTRFfKZThuCKs7zZWHwohE"
+import os
+
+TOKEN = os.getenv("BOT_TOKEN")"
 
 
 # ==============================
